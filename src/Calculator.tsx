@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const 计算器 = () => {
+const Calculator = () => {
   const [display, setDisplay] = useState('0');
   const [equation, setEquation] = useState('');
 
@@ -28,98 +28,105 @@ const 计算器 = () => {
     setEquation('');
   };
 
-  const buttonClass = 'w-16 h-16 m-1 rounded-full text-2xl font-semibold transition-all duration-200 active:scale-95';
+  const handleDecimal = () => {
+    if (!display.includes('.')) {
+      setDisplay(display + '.');
+    }
+  };
 
   return (
-    <div className="bg-gray-800 p-6 rounded-3xl shadow-2xl w-[340px]">
-      <div className="bg-gray-700 rounded-2xl p-4 mb-4">
-        <div className="text-gray-400 text-right h-6 text-sm">{equation}</div>
-        <div className="text-white text-right text-4xl font-bold truncate">{display}</div>
-      </div>
-      
-      <div className="grid grid-cols-4 gap-2">
-        <button
-          onClick={handleClear}
-          className={`${buttonClass} bg-red-500 hover:bg-red-600 text-white col-span-2`}
-        >
-          AC
-        </button>
-        <button
-          onClick={() => handleOperator('/')}
-          className={`${buttonClass} bg-yellow-500 hover:bg-yellow-600 text-white`}
-        >
-          ÷
-        </button>
-        <button
-          onClick={() => handleOperator('*')}
-          className={`${buttonClass} bg-yellow-500 hover:bg-yellow-600 text-white`}
-        >
-          ×
-        </button>
-
-        {['7', '8', '9'].map((num) => (
+    <div className="min-h-screen bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center p-4">
+      <div className="backdrop-blur-lg bg-white/20 p-6 rounded-2xl shadow-2xl w-full max-w-xs">
+        <h1 className="text-2xl font-bold text-white text-center mb-4">计算器</h1>
+        <div className="bg-white/10 p-4 rounded-xl mb-4">
+          <div className="text-sm text-gray-200 h-6">{equation}</div>
+          <div className="text-3xl text-white text-right font-semibold">{display}</div>
+        </div>
+        
+        <div className="grid grid-cols-4 gap-2">
           <button
-            key={num}
-            onClick={() => handleNumber(num)}
-            className={`${buttonClass} bg-gray-600 hover:bg-gray-700 text-white`}
+            onClick={handleClear}
+            className="col-span-2 bg-red-500/80 hover:bg-red-600/80 text-white p-4 rounded-xl transition-all duration-200 text-xl font-semibold active:scale-95"
           >
-            {num}
+            AC
           </button>
-        ))}
-        <button
-          onClick={() => handleOperator('-')}
-          className={`${buttonClass} bg-yellow-500 hover:bg-yellow-600 text-white`}
-        >
-          -
-        </button>
-
-        {['4', '5', '6'].map((num) => (
           <button
-            key={num}
-            onClick={() => handleNumber(num)}
-            className={`${buttonClass} bg-gray-600 hover:bg-gray-700 text-white`}
+            onClick={() => handleOperator('/')}
+            className="bg-purple-500/80 hover:bg-purple-600/80 text-white p-4 rounded-xl transition-all duration-200 text-xl font-semibold active:scale-95"
           >
-            {num}
+            ÷
           </button>
-        ))}
-        <button
-          onClick={() => handleOperator('+')}
-          className={`${buttonClass} bg-yellow-500 hover:bg-yellow-600 text-white`}
-        >
-          +
-        </button>
-
-        {['1', '2', '3'].map((num) => (
           <button
-            key={num}
-            onClick={() => handleNumber(num)}
-            className={`${buttonClass} bg-gray-600 hover:bg-gray-700 text-white`}
+            onClick={() => handleOperator('*')}
+            className="bg-purple-500/80 hover:bg-purple-600/80 text-white p-4 rounded-xl transition-all duration-200 text-xl font-semibold active:scale-95"
           >
-            {num}
+            ×
           </button>
-        ))}
-        <button
-          onClick={handleEqual}
-          className={`${buttonClass} bg-green-500 hover:bg-green-600 text-white row-span-2`}
-        >
-          =
-        </button>
-
-        <button
-          onClick={() => handleNumber('0')}
-          className={`${buttonClass} bg-gray-600 hover:bg-gray-700 text-white col-span-2`}
-        >
-          0
-        </button>
-        <button
-          onClick={() => handleNumber('.')}
-          className={`${buttonClass} bg-gray-600 hover:bg-gray-700 text-white`}
-        >
-          .
-        </button>
+          
+          {['7', '8', '9'].map((num) => (
+            <button
+              key={num}
+              onClick={() => handleNumber(num)}
+              className="bg-white/20 hover:bg-white/30 text-white p-4 rounded-xl transition-all duration-200 text-xl font-semibold active:scale-95"
+            >
+              {num}
+            </button>
+          ))}
+          <button
+            onClick={() => handleOperator('-')}
+            className="bg-purple-500/80 hover:bg-purple-600/80 text-white p-4 rounded-xl transition-all duration-200 text-xl font-semibold active:scale-95"
+          >
+            -
+          </button>
+          
+          {['4', '5', '6'].map((num) => (
+            <button
+              key={num}
+              onClick={() => handleNumber(num)}
+              className="bg-white/20 hover:bg-white/30 text-white p-4 rounded-xl transition-all duration-200 text-xl font-semibold active:scale-95"
+            >
+              {num}
+            </button>
+          ))}
+          <button
+            onClick={() => handleOperator('+')}
+            className="bg-purple-500/80 hover:bg-purple-600/80 text-white p-4 rounded-xl transition-all duration-200 text-xl font-semibold active:scale-95"
+          >
+            +
+          </button>
+          
+          {['1', '2', '3'].map((num) => (
+            <button
+              key={num}
+              onClick={() => handleNumber(num)}
+              className="bg-white/20 hover:bg-white/30 text-white p-4 rounded-xl transition-all duration-200 text-xl font-semibold active:scale-95"
+            >
+              {num}
+            </button>
+          ))}
+          <button
+            onClick={handleEqual}
+            className="bg-green-500/80 hover:bg-green-600/80 text-white p-4 rounded-xl transition-all duration-200 text-xl font-semibold active:scale-95 row-span-2"
+          >
+            =
+          </button>
+          
+          <button
+            onClick={() => handleNumber('0')}
+            className="bg-white/20 hover:bg-white/30 text-white p-4 rounded-xl transition-all duration-200 text-xl font-semibold active:scale-95 col-span-2"
+          >
+            0
+          </button>
+          <button
+            onClick={handleDecimal}
+            className="bg-white/20 hover:bg-white/30 text-white p-4 rounded-xl transition-all duration-200 text-xl font-semibold active:scale-95"
+          >
+            .
+          </button>
+        </div>
       </div>
     </div>
   );
 };
 
-export default 计算器;
+export default Calculator;
