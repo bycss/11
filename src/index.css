@@ -4,15 +4,28 @@
 
 * {
   -webkit-tap-highlight-color: transparent;
-}
-
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
 button {
   user-select: none;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+}
+
+@layer components {
+  .calculator-button {
+    @apply text-xl font-medium rounded-2xl transition-all duration-200 active:scale-95 p-5;
+  }
 }
