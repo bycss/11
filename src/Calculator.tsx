@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const Calculator = () => {
+const 计算器 = () => {
   const [display, setDisplay] = useState('0');
   const [equation, setEquation] = useState('');
 
@@ -122,4 +122,4 @@ const Calculator = () => {
   );
 };
 
-export default Calculator;
+export default 计算器;
