@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
 const Calculator = () => {
-  const [display, setDisplay] = useState('0');
-  const [equation, setEquation] = useState('');
+  const [display, setDisplay] = useState<string>('0');
+  const [equation, setEquation] = useState<string>('');
 
-  const handleNumber = (number: string) => {
+  const handleNumber = (number: string): void => {
     if (display === '0') {
       setDisplay(number);
     } else {
@@ -12,18 +12,24 @@ const Calculator = () => {
     }
   };
 
-  const handleOperator = (operator: string) => {
+  const handleOperator = (operator: string): void => {
     setEquation(display + operator);
     setDisplay('0');
   };
 
-  const handleEquals = () => {
-    const result = eval(equation + display);
-    setDisplay(result.toString());
-    setEquation('');
+  const handleEquals = (): void => {
+    try {
+      // Using Function instead of eval for better security
+      const result = new Function('return ' + equation + display)();
+      setDisplay(String(result));
+      setEquation('');
+    } catch (error) {
+      setDisplay('Error');
+      setEquation('');
+    }
   };
 
-  const handleClear = () => {
+  const handleClear = (): void => {
     setDisplay('0');
     setEquation('');
   };
